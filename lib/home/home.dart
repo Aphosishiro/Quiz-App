@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import '../shared/constant.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Icon> scoreKeeper = [
+    const Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+    const Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+    const Icon(
+      Icons.close,
+      color: Colors.red,
+    ),
+    const Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +44,12 @@ class Home extends StatelessWidget {
       );
     }
 
-    buildAnswerButton(Color color, String button) {
+    buildAnswerButton(Color color, String button, dynamic onPressed) {
       return SizedBox(
         height: size.height * 0.08,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: color),
-          onPressed: () {},
+          onPressed: onPressed,
           child: Text(
             button,
             style: buttonStyle,
@@ -43,14 +67,34 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             buildQuestionBox(),
-            buildAnswerButton(Colors.green, "True"),
+            buildAnswerButton(Colors.green, "True", () {
+              setState(() {
+                setState(() {
+                  scoreKeeper.add(const Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                });
+              });
+            }),
             SizedBox(
               height: size.height * 0.02,
             ),
-            buildAnswerButton(Colors.red, "False"),
+            buildAnswerButton(Colors.red, "False", () {
+              setState(() {
+                scoreKeeper.add(const Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ));
+              });
+            }),
             SizedBox(
-              height: size.height * 0.03,
-            )
+              height: size.height * 0.01,
+            ),
+            Row(children: scoreKeeper),
+            SizedBox(
+              height: size.height * 0.02,
+            ),
           ],
         ),
       ),
