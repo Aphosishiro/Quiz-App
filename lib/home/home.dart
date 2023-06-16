@@ -9,24 +9,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Icon> scoreKeeper = [
-    const Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    const Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    const Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    const Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
+  List<Icon> scoreKeeper = [];
+
+  List<String> questions = [
+    "Flutter is a framework used by mobile developers?",
+    "HTML is the acronym for HyperText Markup Language?",
+    "Figma is a programming language?",
+    "Git is a version control system?",
+    "List is to Dart, while Array is to JavaScript?",
+    "CSS stands for Cascading Spline sheet?",
+    "Strings in programming lanugauges are used to strore numbers?",
+    "ISP stands for Internet Service Provision?",
+    "Netlify is an example of a free hosting platform?",
+    "DNS is an acronym for Domain Name System?",
   ];
+
+  int questionNumbers = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +34,7 @@ class _HomeState extends State<Home> {
       return Expanded(
         child: Center(
           child: Text(
-            "Flutter is a framework used by mobile developers?",
+            questions[questionNumbers],
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -69,12 +67,7 @@ class _HomeState extends State<Home> {
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
               setState(() {
-                setState(() {
-                  scoreKeeper.add(const Icon(
-                    Icons.check,
-                    color: Colors.green,
-                  ));
-                });
+                questionNumbers++;
               });
             }),
             SizedBox(
@@ -82,10 +75,7 @@ class _HomeState extends State<Home> {
             ),
             buildAnswerButton(Colors.red, "False", () {
               setState(() {
-                scoreKeeper.add(const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                ));
+                questionNumbers++;
               });
             }),
             SizedBox(
