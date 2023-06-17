@@ -24,7 +24,22 @@ class _HomeState extends State<Home> {
     "DNS is an acronym for Domain Name System?",
   ];
 
+  List<bool> answers = [
+    true,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false,
+    false,
+    true,
+    true,
+  ];
+
   int questionNumbers = 0;
+
+  late bool correctanswers;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +81,12 @@ class _HomeState extends State<Home> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
+              correctanswers = answers[questionNumbers];
+              if (correctanswers == true) {
+                print("correct");
+              } else {
+                print("wrong");
+              }
               setState(() {
                 questionNumbers++;
               });
@@ -74,6 +95,12 @@ class _HomeState extends State<Home> {
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
+              correctanswers = answers[questionNumbers];
+              if (correctanswers == false) {
+                print("correct");
+              } else {
+                print("wrong");
+              }
               setState(() {
                 questionNumbers++;
               });
