@@ -39,8 +39,6 @@ class _HomeState extends State<Home> {
 
   int questionNumbers = 0;
 
-  late bool correctanswers;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -81,11 +79,17 @@ class _HomeState extends State<Home> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
-              correctanswers = answers[questionNumbers];
+              bool correctanswers = answers[questionNumbers];
               if (correctanswers == true) {
-                print("correct");
+                scoreKeeper.add(const Icon(
+                  Icons.check,
+                  color: Colors.green,
+                ));
               } else {
-                print("wrong");
+                scoreKeeper.add(const Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ));
               }
               setState(() {
                 questionNumbers++;
@@ -95,11 +99,17 @@ class _HomeState extends State<Home> {
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
-              correctanswers = answers[questionNumbers];
+              bool correctanswers = answers[questionNumbers];
               if (correctanswers == false) {
-                print("correct");
+                scoreKeeper.add(const Icon(
+                  Icons.check,
+                  color: Colors.green,
+                ));
               } else {
-                print("wrong");
+                scoreKeeper.add(const Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ));
               }
               setState(() {
                 questionNumbers++;
