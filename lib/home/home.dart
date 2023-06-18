@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_quiz_app/models/questions.dart';
 import '../shared/constant.dart';
 
 class Home extends StatefulWidget {
@@ -11,30 +12,33 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Icon> scoreKeeper = [];
 
-  List<String> questions = [
-    "Flutter is a framework used by mobile developers?",
-    "HTML is the acronym for HyperText Markup Language?",
-    "Figma is a programming language?",
-    "Git is a version control system?",
-    "List is to Dart, while Array is to JavaScript?",
-    "CSS stands for Cascading Spline sheet?",
-    "Strings in programming lanugauges are used to strore numbers?",
-    "ISP stands for Internet Service Provision?",
-    "Netlify is an example of a free hosting platform?",
-    "DNS is an acronym for Domain Name System?",
-  ];
-
-  List<bool> answers = [
-    true,
-    true,
-    false,
-    true,
-    true,
-    false,
-    false,
-    false,
-    true,
-    true,
+  List<Question> questionBank = [
+    Question(
+        question: "Flutter is a framework used by mobile developers?",
+        answer: true),
+    Question(
+        question: "HTML is the acronym for HyperText Markup Language?",
+        answer: true),
+    Question(
+      question: "Figma is a programming language?",
+      answer: false,
+    ),
+    Question(question: "Git is a version control system?", answer: true),
+    Question(
+        question: "List is to Dart, while Array is to JavaScript?",
+        answer: true),
+    Question(question: "CSS stands for Cascading Spline sheet?", answer: false),
+    Question(
+        question:
+            "Strings in programming lanugauges are used to strore numbers?",
+        answer: false),
+    Question(
+        question: "ISP stands for Internet Service Provision?", answer: false),
+    Question(
+        question: "Netlify is an example of a free hosting platform?",
+        answer: true),
+    Question(
+        question: "DNS is an acronym for Domain Name System?", answer: true),
   ];
 
   int questionNumbers = 0;
@@ -47,7 +51,7 @@ class _HomeState extends State<Home> {
       return Expanded(
         child: Center(
           child: Text(
-            questions[questionNumbers],
+            questionBank[questionNumbers].questionText,
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -79,7 +83,8 @@ class _HomeState extends State<Home> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
-              bool correctanswers = answers[questionNumbers];
+              bool correctanswers =
+                  questionBank[questionNumbers].questionAnswer;
               if (correctanswers == true) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -99,7 +104,8 @@ class _HomeState extends State<Home> {
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
-              bool correctanswers = answers[questionNumbers];
+              bool correctanswers =
+                  questionBank[questionNumbers].questionAnswer;
               if (correctanswers == false) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
