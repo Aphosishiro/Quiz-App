@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_quiz_app/models/quizbrain.dart';
 import '../shared/constant.dart';
 
-
+//try creating a sport quiz
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       return Expanded(
         child: Center(
           child: Text(
-            quizbrain.questionBank[questionNumbers].questionText,
+            quizbrain.sportquestions[questionNumbers].questionText,
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
               bool correctanswers =
-                  quizbrain.questionBank[questionNumbers].questionAnswer;
+                  quizbrain.sportquestions[questionNumbers].questionAnswer;
               if (correctanswers == true) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
             ),
             buildAnswerButton(Colors.red, "False", () {
               bool correctanswers =
-                  quizbrain.questionBank[questionNumbers].questionAnswer;
+                  quizbrain.sportquestions[questionNumbers].questionAnswer;
               if (correctanswers == false) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
