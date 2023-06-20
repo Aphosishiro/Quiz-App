@@ -1,7 +1,7 @@
 import 'package:simple_quiz_app/models/questions.dart';
 
 class Quizbrain {
-  List<Question> questionBank = [
+  List<Question> techquiz = [
     Question(
         question: "Flutter is a framework used by mobile developers?",
         answer: true),
