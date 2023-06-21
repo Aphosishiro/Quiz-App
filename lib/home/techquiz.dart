@@ -12,8 +12,6 @@ class TechQuiz extends StatefulWidget {
 class _TechQuizState extends State<TechQuiz> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   Quizbrain quizbrain = Quizbrain();
 
   @override
@@ -24,7 +22,7 @@ class _TechQuizState extends State<TechQuiz> {
       return Expanded(
         child: Center(
           child: Text(
-            quizbrain.getTechQuestionText(questionNumber),
+            quizbrain.getTechQuestionText(),
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -61,7 +59,7 @@ class _TechQuizState extends State<TechQuiz> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
-              bool correctanswers = quizbrain.getTechQuestionAnswer(questionNumber);
+              bool correctanswers = quizbrain.getTechQuestionAnswer();
               if (correctanswers == true) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -74,14 +72,14 @@ class _TechQuizState extends State<TechQuiz> {
                 ));
               }
               setState(() {
-                questionNumber++;
+                quizbrain.nextQuestion();
               });
             }),
             SizedBox(
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
-              bool correctanswers = quizbrain.getTechQuestionAnswer(questionNumber);
+              bool correctanswers = quizbrain.getTechQuestionAnswer();
               if (correctanswers == false) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -94,7 +92,7 @@ class _TechQuizState extends State<TechQuiz> {
                 ));
               }
               setState(() {
-                questionNumber++;
+                quizbrain.nextQuestion();
               });
             }),
             SizedBox(

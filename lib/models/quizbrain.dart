@@ -1,6 +1,14 @@
 import 'package:simple_quiz_app/models/questions.dart';
 
 class Quizbrain {
+  int _questionNumber = 0;
+
+ void nextQuestion() {
+    if (_questionNumber < _sportquiz.length - 1 || _questionNumber < _techquiz.length-1) {
+      _questionNumber++;
+    }
+  }
+
   final List<Question> _techquiz = [
     Question(
         question: "Flutter is a framework used by mobile developers?",
@@ -28,15 +36,21 @@ class Quizbrain {
   ];
 
 //created a getquestion and answer method
-  getTechQuestionText(int questionNumber) {
-    return _techquiz[questionNumber].questionText;
+  getTechQuestionText() {
+    return _techquiz[_questionNumber].questionText;
   }
 
-  getTechQuestionAnswer(int questionNumber) {
-    return _techquiz[questionNumber].questionAnswer;
+  getTechQuestionAnswer() {
+    return _techquiz[_questionNumber].questionAnswer;
   }
 
-  List<Question> _sportquestions = [
+  // void nextTechQuestion() {
+  //   if (_questionNumber < _techquiz.length - 1) {
+  //     _questionNumber++;
+  //   }
+  // }
+
+  final List<Question> _sportquiz = [
     Question(question: "Cristaino Ronaldo wears the No 7?", answer: true),
     Question(
         question: "Nigeria did not qualify for the 2022 world cup?",
@@ -65,11 +79,17 @@ class Quizbrain {
         answer: true),
   ];
 
-  getSportQuestionText(int questionNumber) {
-    return _sportquestions[questionNumber].questionText;
+  getSportQuestionText() {
+    return _sportquiz[_questionNumber].questionText;
   }
 
-  getSportQuestionAnswer(int questionNumber) {
-    return _sportquestions[questionNumber].questionAnswer;
+  getSportQuestionAnswer() {
+    return _sportquiz[_questionNumber].questionAnswer;
   }
+
+  // void nextSportQuestion() {
+  //   if (_questionNumber < _sportquestions.length - 1) {
+  //     _questionNumber++;
+  //   }
+  // }
 }

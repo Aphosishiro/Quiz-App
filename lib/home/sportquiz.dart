@@ -12,8 +12,6 @@ class SportQuiz extends StatefulWidget {
 class _SportQuizState extends State<SportQuiz> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   Quizbrain quizbrain = Quizbrain();
 
   @override
@@ -23,7 +21,7 @@ class _SportQuizState extends State<SportQuiz> {
       return Expanded(
         child: Center(
           child: Text(
-            quizbrain.getSportQuestionText(questionNumber),
+            quizbrain.getSportQuestionText(),
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -61,7 +59,7 @@ class _SportQuizState extends State<SportQuiz> {
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
               bool correctanswers =
-                  quizbrain.getSportQuestionAnswer(questionNumber);
+                  quizbrain.getSportQuestionAnswer();
               if (correctanswers == true) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -74,7 +72,7 @@ class _SportQuizState extends State<SportQuiz> {
                 ));
               }
               setState(() {
-                questionNumber++;
+                quizbrain.nextQuestion();
               });
             }),
             SizedBox(
@@ -82,7 +80,7 @@ class _SportQuizState extends State<SportQuiz> {
             ),
             buildAnswerButton(Colors.red, "False", () {
               bool correctanswers =
-                  quizbrain.getSportQuestionAnswer(questionNumber);
+                  quizbrain.getSportQuestionAnswer();
               if (correctanswers == false) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -95,7 +93,7 @@ class _SportQuizState extends State<SportQuiz> {
                 ));
               }
               setState(() {
-                questionNumber++;
+                quizbrain.nextQuestion();
               });
             }),
             SizedBox(
