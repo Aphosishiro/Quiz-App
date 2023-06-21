@@ -1,17 +1,14 @@
 import 'package:simple_quiz_app/models/questions.dart';
 
 class Quizbrain {
-  List<Question> techquiz = [
+  final List<Question> _techquiz = [
     Question(
         question: "Flutter is a framework used by mobile developers?",
         answer: true),
     Question(
         question: "HTML is the acronym for HyperText Markup Language?",
         answer: true),
-    Question(
-      question: "Figma is a programming language?",
-      answer: false,
-    ),
+    Question(question: "Figma is a programming language?", answer: false),
     Question(question: "Git is a version control system?", answer: true),
     Question(
         question: "List is to Dart, while Array is to JavaScript?",
@@ -30,7 +27,16 @@ class Quizbrain {
         question: "DNS is an acronym for Domain Name System?", answer: true),
   ];
 
-  List<Question> sportquestions = [
+//created a getquestion and answer method
+  getTechQuestionText(int questionNumber) {
+    return _techquiz[questionNumber].questionText;
+  }
+
+  getTechQuestionAnswer(int questionNumber) {
+    return _techquiz[questionNumber].questionAnswer;
+  }
+
+  List<Question> _sportquestions = [
     Question(question: "Cristaino Ronaldo wears the No 7?", answer: true),
     Question(
         question: "Nigeria did not qualify for the 2022 world cup?",
@@ -58,4 +64,12 @@ class Quizbrain {
         question: "The premier leauge is England's most popular tournament?",
         answer: true),
   ];
+
+  getSportQuestionText(int questionNumber) {
+    return _sportquestions[questionNumber].questionText;
+  }
+
+  getSportQuestionAnswer(int questionNumber) {
+    return _sportquestions[questionNumber].questionAnswer;
+  }
 }

@@ -3,8 +3,6 @@ import 'package:simple_quiz_app/home/sportquiz.dart';
 import 'package:simple_quiz_app/home/techquiz.dart';
 import 'package:simple_quiz_app/shared/constant.dart';
 
-//try creating a sport quiz
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -38,6 +36,13 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                "Select quiz type",
+                style: questionStyle
+              ),
+              SizedBox(
+                height: size.height * 0.05,
+              ),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -51,8 +56,10 @@ class _HomeState extends State<Home> {
               ),
               GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const TechQuiz()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TechQuiz()));
                   },
                   child: buildChoiceBubble(Colors.blue, "Tech Quiz"))
             ],

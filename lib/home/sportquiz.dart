@@ -12,7 +12,7 @@ class SportQuiz extends StatefulWidget {
 class _SportQuizState extends State<SportQuiz> {
   List<Icon> scoreKeeper = [];
 
-  int questionNumbers = 0;
+  int questionNumber = 0;
 
   Quizbrain quizbrain = Quizbrain();
 
@@ -23,7 +23,7 @@ class _SportQuizState extends State<SportQuiz> {
       return Expanded(
         child: Center(
           child: Text(
-            quizbrain.sportquestions[questionNumbers].questionText,
+            quizbrain.getSportQuestionText(questionNumber),
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -61,7 +61,7 @@ class _SportQuizState extends State<SportQuiz> {
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
               bool correctanswers =
-                  quizbrain.sportquestions[questionNumbers].questionAnswer;
+                  quizbrain.getSportQuestionAnswer(questionNumber);
               if (correctanswers == true) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -74,7 +74,7 @@ class _SportQuizState extends State<SportQuiz> {
                 ));
               }
               setState(() {
-                questionNumbers++;
+                questionNumber++;
               });
             }),
             SizedBox(
@@ -82,7 +82,7 @@ class _SportQuizState extends State<SportQuiz> {
             ),
             buildAnswerButton(Colors.red, "False", () {
               bool correctanswers =
-                  quizbrain.sportquestions[questionNumbers].questionAnswer;
+                  quizbrain.getSportQuestionAnswer(questionNumber);
               if (correctanswers == false) {
                 scoreKeeper.add(const Icon(
                   Icons.check,
@@ -95,13 +95,15 @@ class _SportQuizState extends State<SportQuiz> {
                 ));
               }
               setState(() {
-                questionNumbers++;
+                questionNumber++;
               });
             }),
             SizedBox(
               height: size.height * 0.01,
             ),
-            Row(children: scoreKeeper),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: scoreKeeper),
             SizedBox(
               height: size.height * 0.02,
             ),
