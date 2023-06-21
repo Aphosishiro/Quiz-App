@@ -18,6 +18,24 @@ class _TechQuizState extends State<TechQuiz> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    void getCorrectAnswer(bool quizAnswer) {
+      return setState(() {
+        bool correctanswers = quizbrain.getTechQuestionAnswer();
+        if (correctanswers == quizAnswer) {
+          scoreKeeper.add(const Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scoreKeeper.add(const Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+        quizbrain.nextQuestion();
+      });
+    }
+
     buildQuestionBox() {
       return Expanded(
         child: Center(
@@ -59,41 +77,13 @@ class _TechQuizState extends State<TechQuiz> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
-              bool correctanswers = quizbrain.getTechQuestionAnswer();
-              if (correctanswers == true) {
-                scoreKeeper.add(const Icon(
-                  Icons.check,
-                  color: Colors.green,
-                ));
-              } else {
-                scoreKeeper.add(const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                ));
-              }
-              setState(() {
-                quizbrain.nextQuestion();
-              });
+              getCorrectAnswer(true);
             }),
             SizedBox(
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
-              bool correctanswers = quizbrain.getTechQuestionAnswer();
-              if (correctanswers == false) {
-                scoreKeeper.add(const Icon(
-                  Icons.check,
-                  color: Colors.green,
-                ));
-              } else {
-                scoreKeeper.add(const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                ));
-              }
-              setState(() {
-                quizbrain.nextQuestion();
-              });
+              getCorrectAnswer(false);
             }),
             SizedBox(
               height: size.height * 0.01,

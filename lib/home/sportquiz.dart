@@ -17,11 +17,31 @@ class _SportQuizState extends State<SportQuiz> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    void getCorrectAnswer(bool quizAnswer) {
+      return setState(() {
+        bool correctanswers = quizbrain.getSportQuizAnswer();
+        if (correctanswers == quizAnswer) {
+          scoreKeeper.add(const Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          scoreKeeper.add(const Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+
+        quizbrain.nextQuestion();
+      });
+    }
+
     buildQuestionBox() {
       return Expanded(
         child: Center(
           child: Text(
-            quizbrain.getSportQuestionText(),
+            quizbrain.getSportQuizText(),
             textAlign: TextAlign.center,
             style: questionStyle,
           ),
@@ -58,43 +78,13 @@ class _SportQuizState extends State<SportQuiz> {
           children: [
             buildQuestionBox(),
             buildAnswerButton(Colors.green, "True", () {
-              bool correctanswers =
-                  quizbrain.getSportQuestionAnswer();
-              if (correctanswers == true) {
-                scoreKeeper.add(const Icon(
-                  Icons.check,
-                  color: Colors.green,
-                ));
-              } else {
-                scoreKeeper.add(const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                ));
-              }
-              setState(() {
-                quizbrain.nextQuestion();
-              });
+              getCorrectAnswer(true);
             }),
             SizedBox(
               height: size.height * 0.02,
             ),
             buildAnswerButton(Colors.red, "False", () {
-              bool correctanswers =
-                  quizbrain.getSportQuestionAnswer();
-              if (correctanswers == false) {
-                scoreKeeper.add(const Icon(
-                  Icons.check,
-                  color: Colors.green,
-                ));
-              } else {
-                scoreKeeper.add(const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                ));
-              }
-              setState(() {
-                quizbrain.nextQuestion();
-              });
+              getCorrectAnswer(false);
             }),
             SizedBox(
               height: size.height * 0.01,

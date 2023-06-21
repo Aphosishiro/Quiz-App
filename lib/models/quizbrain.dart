@@ -3,8 +3,9 @@ import 'package:simple_quiz_app/models/questions.dart';
 class Quizbrain {
   int _questionNumber = 0;
 
- void nextQuestion() {
-    if (_questionNumber < _sportquiz.length - 1 || _questionNumber < _techquiz.length-1) {
+  void nextQuestion() {
+    if (_questionNumber < _sportquiz.length - 1 ||
+        _questionNumber < _techquiz.length - 1) {
       _questionNumber++;
     }
   }
@@ -79,16 +80,16 @@ class Quizbrain {
         answer: true),
   ];
 
-  getSportQuestionText() {
+  getSportQuizText() {
     return _sportquiz[_questionNumber].questionText;
   }
 
-  getSportQuestionAnswer() {
+  getSportQuizAnswer() {
     return _sportquiz[_questionNumber].questionAnswer;
   }
 
   // void nextSportQuestion() {
-  //   if (_questionNumber < _sportquestions.length - 1) {
+  //   if (_questionNumber < _sportquiz.length - 1) {
   //     _questionNumber++;
   //   }
   // }
