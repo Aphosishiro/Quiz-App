@@ -6,29 +6,6 @@ import 'package:simple_quiz_app/shared/constant.dart';
 class Quizbrain {
   int _questionNumber = 0;
 
-  onBasicAlertPressed(context) {
-    Alert(
-      context: context,
-      title: "Your Score",
-      desc: "/10",
-      onWillPopActive: true,
-      style: const AlertStyle(
-        isCloseButton: false,
-      ),
-      buttons: [
-        DialogButton(
-          child: Text(
-            "Close",
-            style: questionStyle,
-          ),
-          onPressed: () {
-            Navigator.popUntil(context, ModalRoute.withName('/home'));
-          },
-        ),
-      ],
-    ).show();
-  }
-
   nextQuestion(context) {
     if (_questionNumber < _sportquiz.length - 1 ||
         _questionNumber < _techquiz.length - 1) {
@@ -110,4 +87,27 @@ class Quizbrain {
   getSportQuizAnswer() {
     return _sportquiz[_questionNumber].answer;
   }
+}
+
+onBasicAlertPressed(context) {
+  Alert(
+    context: context,
+    title: "Game Over",
+    // desc: "/10",
+    onWillPopActive: true,
+    style: const AlertStyle(
+      isCloseButton: false,
+    ),
+    buttons: [
+      DialogButton(
+        child: Text(
+          "Close",
+          style: questionStyle,
+        ),
+        onPressed: () {
+          Navigator.popUntil(context, ModalRoute.withName('/home'));
+        },
+      ),
+    ],
+  ).show();
 }
