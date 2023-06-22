@@ -100,6 +100,7 @@ onBasicAlertPressed(context) {
     ),
     buttons: [
       DialogButton(
+        color: Colors.red,
         child: Text(
           "Close",
           style: questionStyle,
