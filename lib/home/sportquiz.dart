@@ -33,7 +33,7 @@ class _SportQuizState extends State<SportQuiz> {
           ));
         }
 
-        quizbrain.nextQuestion();
+        quizbrain.nextQuestion(context);
       });
     }
 

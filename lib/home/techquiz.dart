@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:simple_quiz_app/models/quizbrain.dart';
 import 'package:simple_quiz_app/shared/constant.dart';
 
@@ -18,6 +19,14 @@ class _TechQuizState extends State<TechQuiz> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    onBasicAlertPressed(context) {
+      Alert(
+        context: context,
+        title: "Your Score",
+        //desc: "Flutter is more awesome with RFlutter Alert.",
+      ).show();
+    }
+
     void getCorrectAnswer(bool quizAnswer) {
       return setState(() {
         bool correctanswers = quizbrain.getTechQuestionAnswer();
@@ -32,7 +41,7 @@ class _TechQuizState extends State<TechQuiz> {
             color: Colors.red,
           ));
         }
-        quizbrain.nextQuestion();
+        quizbrain.nextQuestion(context);
       });
     }
 

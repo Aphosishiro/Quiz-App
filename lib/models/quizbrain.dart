@@ -1,30 +1,31 @@
-import 'package:simple_quiz_app/models/questions.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:simple_quiz_app/models/questions.dart';
 
 class Quizbrain {
   int _questionNumber = 0;
-  
-  _onBasicAlertPressed(context) {
-  Alert(
-    context: context,
-    title: "RFLUTTER ALERT",
-    desc: "Flutter is more awesome with RFlutter Alert.",
-  ).show();
-}
 
-  void nextQuestion() {
+  onBasicAlertPressed(context) {
+    Alert(
+      context: context,
+      title: "Your Score",
+      //desc: "Flutter is more awesome with RFlutter Alert.",
+    ).show();
+  }
+
+  nextQuestion(context) {
     if (_questionNumber < _sportquiz.length - 1 ||
         _questionNumber < _techquiz.length - 1) {
       _questionNumber++;
     } else {
-     
+      onBasicAlertPressed(context);
     }
   }
 
   final List<Question> _techquiz = [
     Question(
-        question: "Flutter is a framework used by mobile developers?",
-        answer: true,),
+      question: "Flutter is a framework used by mobile developers?",
+      answer: true,
+    ),
     Question(
         question: "HTML is the acronym for HyperText Markup Language?",
         answer: true),
@@ -47,7 +48,7 @@ class Quizbrain {
         question: "DNS is an acronym for Domain Name System?", answer: true),
   ];
 
-//created a getquestion and answer method
+//created a get question and answer method
   getTechQuestionText() {
     return _techquiz[_questionNumber].question;
   }
@@ -55,12 +56,6 @@ class Quizbrain {
   getTechQuestionAnswer() {
     return _techquiz[_questionNumber].answer;
   }
-
-  // void nextTechQuestion() {
-  //   if (_questionNumber < _techquiz.length - 1) {
-  //     _questionNumber++;
-  //   }
-  // }
 
   final List<Question> _sportquiz = [
     Question(question: "Cristaino Ronaldo wears the No 7?", answer: true),
@@ -98,10 +93,4 @@ class Quizbrain {
   getSportQuizAnswer() {
     return _sportquiz[_questionNumber].answer;
   }
-
-  // void nextSportQuestion() {
-  //   if (_questionNumber < _sportquiz.length - 1) {
-  //     _questionNumber++;
-  //   }
-  // }
 }
