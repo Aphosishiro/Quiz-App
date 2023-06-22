@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:simple_quiz_app/models/questions.dart';
+import 'package:simple_quiz_app/shared/constant.dart';
 
 class Quizbrain {
   int _questionNumber = 0;
@@ -8,7 +10,22 @@ class Quizbrain {
     Alert(
       context: context,
       title: "Your Score",
-      //desc: "Flutter is more awesome with RFlutter Alert.",
+      desc: "/10",
+      onWillPopActive: true,
+      style: const AlertStyle(
+        isCloseButton: false,
+      ),
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Close",
+            style: questionStyle,
+          ),
+          onPressed: () {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+          },
+        ),
+      ],
     ).show();
   }
 
