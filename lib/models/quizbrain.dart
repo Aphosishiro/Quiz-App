@@ -1,19 +1,30 @@
 import 'package:simple_quiz_app/models/questions.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Quizbrain {
   int _questionNumber = 0;
+  
+  _onBasicAlertPressed(context) {
+  Alert(
+    context: context,
+    title: "RFLUTTER ALERT",
+    desc: "Flutter is more awesome with RFlutter Alert.",
+  ).show();
+}
 
   void nextQuestion() {
     if (_questionNumber < _sportquiz.length - 1 ||
         _questionNumber < _techquiz.length - 1) {
       _questionNumber++;
+    } else {
+     
     }
   }
 
   final List<Question> _techquiz = [
     Question(
         question: "Flutter is a framework used by mobile developers?",
-        answer: true),
+        answer: true,),
     Question(
         question: "HTML is the acronym for HyperText Markup Language?",
         answer: true),
@@ -38,11 +49,11 @@ class Quizbrain {
 
 //created a getquestion and answer method
   getTechQuestionText() {
-    return _techquiz[_questionNumber].questionText;
+    return _techquiz[_questionNumber].question;
   }
 
   getTechQuestionAnswer() {
-    return _techquiz[_questionNumber].questionAnswer;
+    return _techquiz[_questionNumber].answer;
   }
 
   // void nextTechQuestion() {
@@ -81,11 +92,11 @@ class Quizbrain {
   ];
 
   getSportQuizText() {
-    return _sportquiz[_questionNumber].questionText;
+    return _sportquiz[_questionNumber].question;
   }
 
   getSportQuizAnswer() {
-    return _sportquiz[_questionNumber].questionAnswer;
+    return _sportquiz[_questionNumber].answer;
   }
 
   // void nextSportQuestion() {

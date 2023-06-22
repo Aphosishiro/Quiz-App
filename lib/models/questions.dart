@@ -1,9 +1,9 @@
 class Question {
-  late String questionText;
-  late bool questionAnswer;
+  String question;
+  bool answer;
 
-  Question({required String question, required bool answer}) {
-    questionText = question;
-    questionAnswer = answer;
-  }
+  Question({
+    required this.question,
+    required this.answer,
+  });
 }
